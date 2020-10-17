@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SodomaInn.Core", "SodomaInn
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SodomaInn.Business", "SodomaInn.Business\SodomaInn.Business.csproj", "{2141D4DB-CE70-4644-840C-9C66D7930AF0}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "SodomaInn.Api", "SodomaInn.Api\SodomaInn.Api.vbproj", "{483C72AB-45A4-4C1B-A230-F9AB228C6073}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SodomaInn.Api", "SodomaInn.Api\SodomaInn.Api.csproj", "{745C106D-B1F5-412B-AAFF-4807A0E4B6C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{2141D4DB-CE70-4644-840C-9C66D7930AF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2141D4DB-CE70-4644-840C-9C66D7930AF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2141D4DB-CE70-4644-840C-9C66D7930AF0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{483C72AB-45A4-4C1B-A230-F9AB228C6073}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{483C72AB-45A4-4C1B-A230-F9AB228C6073}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{483C72AB-45A4-4C1B-A230-F9AB228C6073}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{483C72AB-45A4-4C1B-A230-F9AB228C6073}.Release|Any CPU.Build.0 = Release|Any CPU
+		{745C106D-B1F5-412B-AAFF-4807A0E4B6C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{745C106D-B1F5-412B-AAFF-4807A0E4B6C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{745C106D-B1F5-412B-AAFF-4807A0E4B6C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{745C106D-B1F5-412B-AAFF-4807A0E4B6C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
