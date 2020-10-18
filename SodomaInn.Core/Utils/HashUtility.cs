@@ -7,7 +7,7 @@ namespace SodomaInn.Core.Utils
 {
     public class HashUtility
     {
-        public string ComputeSha256Hash(string rawData)
+        public static string ComputeSha256Hash(string rawData)
         {
             using (SHA256 sha256Hash = SHA256.Create())
             {
