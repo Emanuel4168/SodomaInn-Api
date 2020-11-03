@@ -12,14 +12,13 @@ namespace SodomaInn.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Habitacion
+    public partial class Clientes
     {
-        public int IdHabitacion { get; set; }
-        public string Identificador { get; set; }
-        public bool Disponible { get; set; }
-        public int IdTipoHabitacion { get; set; }
+        public int IdCliente { get; set; }
+        public string NombreCliente { get; set; }
+        public string Curp { get; set; }
+        public string Telefono { get; set; }
         public bool Estatus { get; set; }
-    
-        public virtual TiposHabitacion TiposHabitacion { get; set; }
+        public System.DateTime FechaAlta { get; set; }
     }
 }

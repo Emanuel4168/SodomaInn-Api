@@ -14,9 +14,18 @@ namespace SodomaInn.Model
     
     public partial class TiposHabitacion
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TiposHabitacion()
+        {
+            this.Habitacion = new HashSet<Habitacion>();
+        }
+    
         public int IdTipoHabitacion { get; set; }
         public string Descripcion { get; set; }
         public decimal PrecioNoche { get; set; }
         public int MaximoHuespedes { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Habitacion> Habitacion { get; set; }
     }
 }

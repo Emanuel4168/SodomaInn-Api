@@ -29,5 +29,6 @@ namespace SodomaInn.Model
         public virtual DbSet<Habitacion> Habitacion { get; set; }
         public virtual DbSet<TiposHabitacion> TiposHabitacion { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
+        public virtual DbSet<Clientes> Clientes { get; set; }
     }
 }

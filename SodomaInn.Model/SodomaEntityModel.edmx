@@ -4,7 +4,18 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SodomaInnModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SodomaInnModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Clientes">
+          <Key>
+            <PropertyRef Name="IdCliente" />
+          </Key>
+          <Property Name="IdCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreCliente" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="Curp" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Estatus" Type="bit" Nullable="false" />
+          <Property Name="FechaAlta" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="Empleados">
           <Key>
             <PropertyRef Name="IdEmpleado" />
@@ -21,6 +32,7 @@
           <Property Name="Identificador" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="Disponible" Type="bit" Nullable="false" />
           <Property Name="IdTipoHabitacion" Type="int" Nullable="false" />
+          <Property Name="Estatus" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="TiposHabitacion">
           <Key>
@@ -39,15 +51,32 @@
           <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="PassWord" Type="varchar" MaxLength="80" Nullable="false" />
           <Property Name="perfil" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="NombreCompleto" Type="varchar" MaxLength="60" />
         </EntityType>
+        <Association Name="FK__Habitacio__IdTip__36B12243">
+          <End Role="TiposHabitacion" Type="Self.TiposHabitacion" Multiplicity="1" />
+          <End Role="Habitacion" Type="Self.Habitacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposHabitacion">
+              <PropertyRef Name="IdTipoHabitacion" />
+            </Principal>
+            <Dependent Role="Habitacion">
+              <PropertyRef Name="IdTipoHabitacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="SodomaInnModelStoreContainer">
+          <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Empleados" EntityType="Self.Empleados" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Habitacion" EntityType="Self.Habitacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TiposHabitacion" EntityType="Self.TiposHabitacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Habitacio__IdTip__36B12243" Association="Self.FK__Habitacio__IdTip__36B12243">
+            <End Role="TiposHabitacion" EntitySet="TiposHabitacion" />
+            <End Role="Habitacion" EntitySet="Habitacion" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SodomaInnModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -67,6 +96,8 @@
           <Property Name="Identificador" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Disponible" Type="Boolean" Nullable="false" />
           <Property Name="IdTipoHabitacion" Type="Int32" Nullable="false" />
+          <Property Name="Estatus" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TiposHabitacion" Relationship="SodomaInnModel.FK__Habitacio__IdTip__36B12243" FromRole="Habitacion" ToRole="TiposHabitacion" />
         </EntityType>
         <EntityType Name="TiposHabitacion">
           <Key>
@@ -76,6 +107,7 @@
           <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PrecioNoche" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="MaximoHuespedes" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Habitacion" Relationship="SodomaInnModel.FK__Habitacio__IdTip__36B12243" FromRole="TiposHabitacion" ToRole="Habitacion" />
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
@@ -85,13 +117,42 @@
           <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PassWord" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="perfil" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NombreCompleto" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="SodomaInnEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Empleados" EntityType="Self.Empleados" />
           <EntitySet Name="Habitacion" EntityType="Self.Habitacion" />
           <EntitySet Name="TiposHabitacion" EntityType="Self.TiposHabitacion" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <EntitySet Name="Clientes" EntityType="SodomaInnModel.Clientes" />
+          <AssociationSet Name="FK__Habitacio__IdTip__36B12243" Association="SodomaInnModel.FK__Habitacio__IdTip__36B12243">
+            <End Role="TiposHabitacion" EntitySet="TiposHabitacion" />
+            <End Role="Habitacion" EntitySet="Habitacion" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Clientes">
+          <Key>
+            <PropertyRef Name="IdCliente" />
+          </Key>
+          <Property Name="IdCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreCliente" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="Curp" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Estatus" Type="Boolean" Nullable="false" />
+          <Property Name="FechaAlta" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <Association Name="FK__Habitacio__IdTip__36B12243">
+          <End Type="SodomaInnModel.TiposHabitacion" Role="TiposHabitacion" Multiplicity="1" />
+          <End Type="SodomaInnModel.Habitacion" Role="Habitacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposHabitacion">
+              <PropertyRef Name="IdTipoHabitacion" />
+            </Principal>
+            <Dependent Role="Habitacion">
+              <PropertyRef Name="IdTipoHabitacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -110,6 +171,7 @@
           <EntitySetMapping Name="Habitacion">
             <EntityTypeMapping TypeName="SodomaInnModel.Habitacion">
               <MappingFragment StoreEntitySet="Habitacion">
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
                 <ScalarProperty Name="IdHabitacion" ColumnName="IdHabitacion" />
                 <ScalarProperty Name="Identificador" ColumnName="Identificador" />
                 <ScalarProperty Name="Disponible" ColumnName="Disponible" />
@@ -130,10 +192,23 @@
           <EntitySetMapping Name="Usuarios">
             <EntityTypeMapping TypeName="SodomaInnModel.Usuarios">
               <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
                 <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="PassWord" ColumnName="PassWord" />
                 <ScalarProperty Name="perfil" ColumnName="perfil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clientes">
+            <EntityTypeMapping TypeName="SodomaInnModel.Clientes">
+              <MappingFragment StoreEntitySet="Clientes">
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Curp" ColumnName="Curp" />
+                <ScalarProperty Name="NombreCliente" ColumnName="NombreCliente" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

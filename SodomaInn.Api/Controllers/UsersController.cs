@@ -18,6 +18,8 @@ namespace SodomaInn.Api.Controllers
             userManager = new UserManager();
         }
 
+        [HttpPost]
+        [Route("User/Login")]
         public IHttpActionResult LogIn([FromBody]UserDto user)
         {
             UserDto userData = userManager.LogIn(user);

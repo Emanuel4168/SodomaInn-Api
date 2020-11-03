@@ -88,6 +88,9 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clientes.cs">
+      <DependentUpon>SodomaEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Empleados.cs">
       <DependentUpon>SodomaEntityModel.tt</DependentUpon>
     </Compile>

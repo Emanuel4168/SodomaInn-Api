@@ -9,6 +9,8 @@
         <EntityTypeShape EntityType="SodomaInnModel.Habitacion" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SodomaInnModel.TiposHabitacion" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SodomaInnModel.Usuarios" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SodomaInnModel.Clientes" Width="1.5" PointX="5.375" PointY="0.75" />
+        <AssociationConnector Association="SodomaInnModel.FK__Habitacio__IdTip__36B12243" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

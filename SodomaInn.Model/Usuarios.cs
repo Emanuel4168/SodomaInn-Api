@@ -18,5 +18,6 @@ namespace SodomaInn.Model
         public string Username { get; set; }
         public string PassWord { get; set; }
         public string perfil { get; set; }
+        public string NombreCompleto { get; set; }
     }
 }
