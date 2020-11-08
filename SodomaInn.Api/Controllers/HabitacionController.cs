@@ -42,5 +42,13 @@ namespace SodomaInn.Api.Controllers
             bool success = habitacionManager.BajaHabitacion(idHabitacion);
             return Json(success);
         }
+
+        [HttpGet]
+        [Route("Habitacion/GetHabitacionesPorTipo")]
+        public IHttpActionResult GetHabitacionesPorTipo([FromUri]int tipo)
+        {
+            var habitaciones = habitacionManager.GetHabitacionesPorTipo(tipo);
+            return Json(habitaciones);
+        }
     }
 }

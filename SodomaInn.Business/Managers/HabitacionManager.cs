@@ -67,5 +67,27 @@ namespace SodomaInn.Business.Managers
                 return false;
             }
         }
+
+        public List<HabitacionDto> GetHabitacionesPorTipo(int tipo)
+        {
+            try
+            {
+                List<HabitacionDto> habitaciones = new List<HabitacionDto>();
+                using (SodomaInnEntities context = new SodomaInnEntities())
+                {
+                    var habitacionesDb = context.Habitacion.Where(h => h.IdTipoHabitacion == tipo);
+                    foreach (var habitacion in habitacionesDb)
+                    {
+                        habitaciones.Add(ObjectMapper.Map<Habitacion, HabitacionDto>(habitacion));
+                    }
+                    return habitaciones;
+                }
+                
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
     }
 }

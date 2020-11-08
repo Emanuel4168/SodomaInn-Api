@@ -25,9 +25,10 @@ namespace SodomaInn.Core.Utils
                 {
                     continue;
                 }
-                if (Convert.GetTypeCode(destProp.GetValue(dest)) == TypeCode.Object)
+                var x = Convert.GetTypeCode(prop.GetValue(source));
+                if (Convert.GetTypeCode(prop.GetValue(source)) == TypeCode.Object)
                 {
-                    var x = Convert.GetTypeCode(destProp);
+                    //var x = Convert.GetTypeCode(destProp);
                     var type1 = prop.PropertyType;
                     var type2 = destProp.PropertyType;
                     Object result = typeof(ObjectMapper).GetMethod("Map").MakeGenericMethod(new[] { type1 , type2}).Invoke(null, new object[] { prop.GetValue(source) });
