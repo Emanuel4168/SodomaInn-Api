@@ -34,6 +34,27 @@
           <Property Name="IdTipoHabitacion" Type="int" Nullable="false" />
           <Property Name="Estatus" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="PagosReservacion">
+          <Key>
+            <PropertyRef Name="IdPago" />
+          </Key>
+          <Property Name="IdPago" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FormaPago" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="MontoPago" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Comision" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Referencia" Type="varchar" MaxLength="10" />
+          <Property Name="IdReservacion" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reservacion">
+          <Key>
+            <PropertyRef Name="IdReservacion" />
+          </Key>
+          <Property Name="IdReservacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FechaInicio" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaFin" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdHabitacion" Type="int" Nullable="false" />
+          <Property Name="IdCliente" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="TiposHabitacion">
           <Key>
             <PropertyRef Name="IdTipoHabitacion" />
@@ -65,15 +86,33 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__PagosRese__IdRes__52593CB8">
+          <End Role="Reservacion" Type="Self.Reservacion" Multiplicity="1" />
+          <End Role="PagosReservacion" Type="Self.PagosReservacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reservacion">
+              <PropertyRef Name="IdReservacion" />
+            </Principal>
+            <Dependent Role="PagosReservacion">
+              <PropertyRef Name="IdReservacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="SodomaInnModelStoreContainer">
           <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Empleados" EntityType="Self.Empleados" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Habitacion" EntityType="Self.Habitacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PagosReservacion" EntityType="Self.PagosReservacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reservacion" EntityType="Self.Reservacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TiposHabitacion" EntityType="Self.TiposHabitacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Habitacio__IdTip__36B12243" Association="Self.FK__Habitacio__IdTip__36B12243">
             <End Role="TiposHabitacion" EntitySet="TiposHabitacion" />
             <End Role="Habitacion" EntitySet="Habitacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PagosRese__IdRes__52593CB8" Association="Self.FK__PagosRese__IdRes__52593CB8">
+            <End Role="Reservacion" EntitySet="Reservacion" />
+            <End Role="PagosReservacion" EntitySet="PagosReservacion" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -129,6 +168,12 @@
             <End Role="TiposHabitacion" EntitySet="TiposHabitacion" />
             <End Role="Habitacion" EntitySet="Habitacion" />
           </AssociationSet>
+          <EntitySet Name="PagosReservacion" EntityType="SodomaInnModel.PagosReservacion" />
+          <EntitySet Name="Reservacion" EntityType="SodomaInnModel.Reservacion" />
+          <AssociationSet Name="FK__PagosRese__IdRes__52593CB8" Association="SodomaInnModel.FK__PagosRese__IdRes__52593CB8">
+            <End Role="Reservacion" EntitySet="Reservacion" />
+            <End Role="PagosReservacion" EntitySet="PagosReservacion" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Clientes">
           <Key>
@@ -150,6 +195,41 @@
             </Principal>
             <Dependent Role="Habitacion">
               <PropertyRef Name="IdTipoHabitacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PagosReservacion">
+          <Key>
+            <PropertyRef Name="IdPago" />
+          </Key>
+          <Property Name="IdPago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FormaPago" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="MontoPago" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Comision" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Referencia" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="IdReservacion" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Reservacion" Relationship="SodomaInnModel.FK__PagosRese__IdRes__52593CB8" FromRole="PagosReservacion" ToRole="Reservacion" />
+        </EntityType>
+        <EntityType Name="Reservacion">
+          <Key>
+            <PropertyRef Name="IdReservacion" />
+          </Key>
+          <Property Name="IdReservacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaInicio" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaFin" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IdHabitacion" Type="Int32" Nullable="false" />
+          <Property Name="IdCliente" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PagosReservacion" Relationship="SodomaInnModel.FK__PagosRese__IdRes__52593CB8" FromRole="Reservacion" ToRole="PagosReservacion" />
+        </EntityType>
+        <Association Name="FK__PagosRese__IdRes__52593CB8">
+          <End Type="SodomaInnModel.Reservacion" Role="Reservacion" Multiplicity="1" />
+          <End Type="SodomaInnModel.PagosReservacion" Role="PagosReservacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reservacion">
+              <PropertyRef Name="IdReservacion" />
+            </Principal>
+            <Dependent Role="PagosReservacion">
+              <PropertyRef Name="IdReservacion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -209,6 +289,29 @@
                 <ScalarProperty Name="Curp" ColumnName="Curp" />
                 <ScalarProperty Name="NombreCliente" ColumnName="NombreCliente" />
                 <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PagosReservacion">
+            <EntityTypeMapping TypeName="SodomaInnModel.PagosReservacion">
+              <MappingFragment StoreEntitySet="PagosReservacion">
+                <ScalarProperty Name="IdReservacion" ColumnName="IdReservacion" />
+                <ScalarProperty Name="Referencia" ColumnName="Referencia" />
+                <ScalarProperty Name="Comision" ColumnName="Comision" />
+                <ScalarProperty Name="MontoPago" ColumnName="MontoPago" />
+                <ScalarProperty Name="FormaPago" ColumnName="FormaPago" />
+                <ScalarProperty Name="IdPago" ColumnName="IdPago" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reservacion">
+            <EntityTypeMapping TypeName="SodomaInnModel.Reservacion">
+              <MappingFragment StoreEntitySet="Reservacion">
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="IdHabitacion" ColumnName="IdHabitacion" />
+                <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="IdReservacion" ColumnName="IdReservacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

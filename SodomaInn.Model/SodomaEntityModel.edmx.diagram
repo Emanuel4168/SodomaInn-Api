@@ -11,6 +11,9 @@
         <EntityTypeShape EntityType="SodomaInnModel.Usuarios" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SodomaInnModel.Clientes" Width="1.5" PointX="5.375" PointY="0.75" />
         <AssociationConnector Association="SodomaInnModel.FK__Habitacio__IdTip__36B12243" />
+        <EntityTypeShape EntityType="SodomaInnModel.PagosReservacion" Width="1.5" PointX="7.625" PointY="4" />
+        <EntityTypeShape EntityType="SodomaInnModel.Reservacion" Width="1.5" PointX="5.375" PointY="4" />
+        <AssociationConnector Association="SodomaInnModel.FK__PagosRese__IdRes__52593CB8" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
