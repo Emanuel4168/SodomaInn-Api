@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 
 namespace SodomaInn.Api.Controllers
@@ -23,7 +24,15 @@ namespace SodomaInn.Api.Controllers
         public IHttpActionResult LogIn([FromBody]UserDto user)
         {
             UserDto userData = userManager.LogIn(user);
-            return Json(user);
+            return Json(userData);
+        }
+
+        [HttpOptions]
+        [Route("User/Login")]
+        public IHttpActionResult Options()
+        {
+            HttpContext.Current.Response.AppendHeader("Allow", "POST,OPTIONS");
+            return Ok();
         }
     }
 }

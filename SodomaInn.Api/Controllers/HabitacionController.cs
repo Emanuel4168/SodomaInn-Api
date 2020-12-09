@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 
 namespace SodomaInn.Api.Controllers
@@ -27,6 +28,14 @@ namespace SodomaInn.Api.Controllers
             return Json(success);
         }
 
+        [HttpOptions]
+        [Route("Habitacion/AgregarHabitacion")]
+        public IHttpActionResult Options()
+        {
+            HttpContext.Current.Response.AppendHeader("Allow", "POST,OPTIONS");
+            return Ok();
+        }
+
         [HttpPost]
         [Route("Habitacion/ActualizarHabitacion")]
         public IHttpActionResult ActualizarHabitacion([FromBody]HabitacionDto habitacion)
@@ -45,6 +54,7 @@ namespace SodomaInn.Api.Controllers
 
         [HttpGet]
         [Route("Habitacion/GetHabitacionesPorTipo")]
+        //[EnableCors(origins: "http://local.tapuz.co.il", headers: "*", methods: "*", SupportsCredentials = true)]
         public IHttpActionResult GetHabitacionesPorTipo([FromUri]int tipo)
         {
             var habitaciones = habitacionManager.GetHabitacionesPorTipo(tipo);

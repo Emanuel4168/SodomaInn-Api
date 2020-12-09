@@ -75,7 +75,7 @@ namespace SodomaInn.Business.Managers
                 List<HabitacionDto> habitaciones = new List<HabitacionDto>();
                 using (SodomaInnEntities context = new SodomaInnEntities())
                 {
-                    var habitacionesDb = context.Habitacion.Where(h => h.IdTipoHabitacion == tipo);
+                    var habitacionesDb = context.Habitacion.Where(h => h.IdTipoHabitacion == tipo || tipo == 0);
                     foreach (var habitacion in habitacionesDb)
                     {
                         habitaciones.Add(ObjectMapper.Map<Habitacion, HabitacionDto>(habitacion));

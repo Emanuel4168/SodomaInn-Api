@@ -7,8 +7,8 @@ namespace SodomaInn.Core.Dto
     public class ReservacionDto
     {
         public int IdReservacion { get; set; }
-        public string FechaInicio { get; set; }
-        public string FechaFin { get; set; }
+        public DateTime FechaInicio { get; set; }
+        public DateTime FechaFin { get; set; }
         public int IdHabitacion { get; set; }
         public int IdCliente { get; set; }
 
