@@ -25,12 +25,14 @@ namespace SodomaInn.Model
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<CatalogoServicios> CatalogoServicios { get; set; }
+        public virtual DbSet<Clientes> Clientes { get; set; }
         public virtual DbSet<Empleados> Empleados { get; set; }
         public virtual DbSet<Habitacion> Habitacion { get; set; }
-        public virtual DbSet<TiposHabitacion> TiposHabitacion { get; set; }
-        public virtual DbSet<Usuarios> Usuarios { get; set; }
-        public virtual DbSet<Clientes> Clientes { get; set; }
         public virtual DbSet<PagosReservacion> PagosReservacion { get; set; }
         public virtual DbSet<Reservacion> Reservacion { get; set; }
+        public virtual DbSet<ServiciosReservacion> ServiciosReservacion { get; set; }
+        public virtual DbSet<TiposHabitacion> TiposHabitacion { get; set; }
+        public virtual DbSet<Usuarios> Usuarios { get; set; }
     }
 }

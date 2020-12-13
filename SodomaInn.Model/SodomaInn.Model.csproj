@@ -88,6 +88,9 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CatalogoServicios.cs">
+      <DependentUpon>SodomaEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Clientes.cs">
       <DependentUpon>SodomaEntityModel.tt</DependentUpon>
     </Compile>
@@ -102,6 +105,9 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reservacion.cs">
+      <DependentUpon>SodomaEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ServiciosReservacion.cs">
       <DependentUpon>SodomaEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SodomaEntityModel.Context.cs">

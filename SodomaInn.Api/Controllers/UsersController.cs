@@ -29,7 +29,23 @@ namespace SodomaInn.Api.Controllers
 
         [HttpOptions]
         [Route("User/Login")]
-        public IHttpActionResult Options()
+        public IHttpActionResult LogInOptions()
+        {
+            HttpContext.Current.Response.AppendHeader("Allow", "POST,OPTIONS");
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("User/SignIn")]
+        public IHttpActionResult SignIn([FromBody]UserDto user)
+        {
+            bool result = userManager.SignIn(user);
+            return Json(result);
+        }
+
+        [HttpOptions]
+        [Route("User/SignIn")]
+        public IHttpActionResult SignInOptions()
         {
             HttpContext.Current.Response.AppendHeader("Allow", "POST,OPTIONS");
             return Ok();

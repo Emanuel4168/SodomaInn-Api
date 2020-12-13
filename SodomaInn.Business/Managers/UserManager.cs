@@ -29,5 +29,23 @@ namespace SodomaInn.Business.Managers
                 return null;
             }
         }
+
+        public bool SignIn(UserDto user)
+        {
+            try
+            {
+                using (SodomaInnEntities context = new SodomaInnEntities())
+                {
+                    user.PassWord = HashUtility.ComputeSha256Hash(user.PassWord);
+                    Usuarios usuario = ObjectMapper.Map<UserDto, Usuarios>(user);
+                    context.Usuarios.Add(usuario);
+                }
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
     }
 }

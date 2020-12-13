@@ -21,10 +21,13 @@ namespace SodomaInn.Model
         }
     
         public int IdReservacion { get; set; }
-        public string FechaInicio { get; set; }
-        public string FechaFin { get; set; }
+        public System.DateTime FechaInicio { get; set; }
+        public System.DateTime FechaFin { get; set; }
         public int IdHabitacion { get; set; }
-        public int IdCliente { get; set; }
+        public Nullable<int> IdCliente { get; set; }
+        public string NombreCliente { get; set; }
+        public string Telefono { get; set; }
+        public string Email { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PagosReservacion> PagosReservacion { get; set; }

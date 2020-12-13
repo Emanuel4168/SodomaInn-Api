@@ -31,10 +31,24 @@ namespace SodomaInn.Core.Utils
                     var type1 = prop.PropertyType;
                     var type2 = destProp.PropertyType;
                     Object result = typeof(ObjectMapper).GetMethod("Map").MakeGenericMethod(new[] { type1 , type2}).Invoke(null, new object[] { prop.GetValue(source) });
-                    destProp.SetValue(dest, result);
+                    try
+                    {
+                        destProp.SetValue(dest, result);
+                    }
+                    catch (Exception e)
+                    {
+                        continue;
+                    }
                     continue;
                 }
-                destProp.SetValue(dest, prop.GetValue(source));
+                try 
+                {
+                    destProp.SetValue(dest, prop.GetValue(source));
+                }
+                catch(Exception e)
+                {
+                    continue;
+                }
 
             }
             return dest;

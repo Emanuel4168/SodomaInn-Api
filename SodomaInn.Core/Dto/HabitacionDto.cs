@@ -8,7 +8,7 @@ namespace SodomaInn.Core.Dto
     {
         public int IdHabitacion { get; set; }
         public string Identificador { get; set; }
-        public bool Disponible { get; set; }
+        public int Disponible { get; set; }
         public int IdTipoHabitacion { get; set; }
         public bool Estatus { get; set; }
 

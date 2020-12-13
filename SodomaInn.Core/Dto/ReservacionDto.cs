@@ -11,6 +11,9 @@ namespace SodomaInn.Core.Dto
         public DateTime FechaFin { get; set; }
         public int IdHabitacion { get; set; }
         public int IdCliente { get; set; }
+        public string NombreCliente { get; set; }
+        public string Telefono { get; set; }
+        public string Email { get; set; }
 
         public  List<PagoReservacionDto> PagosReservacion { get; set; }
     }

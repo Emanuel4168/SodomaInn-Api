@@ -5,14 +5,16 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="ac4e078b02b9433c8b6578c425577581" Name="Diagram1">
-        <EntityTypeShape EntityType="SodomaInnModel.Empleados" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SodomaInnModel.Habitacion" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SodomaInnModel.TiposHabitacion" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SodomaInnModel.Usuarios" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SodomaInnModel.Clientes" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="SodomaInnModel.CatalogoServicios" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SodomaInnModel.Clientes" Width="1.5" PointX="5.75" PointY="3.75" />
+        <EntityTypeShape EntityType="SodomaInnModel.Empleados" Width="1.5" PointX="5.75" PointY="6.75" />
+        <EntityTypeShape EntityType="SodomaInnModel.Habitacion" Width="1.5" PointX="3" PointY="0.875" />
+        <EntityTypeShape EntityType="SodomaInnModel.PagosReservacion" Width="1.5" PointX="3" PointY="5.125" />
+        <EntityTypeShape EntityType="SodomaInnModel.Reservacion" Width="1.5" PointX="0.75" PointY="5" />
+        <EntityTypeShape EntityType="SodomaInnModel.ServiciosReservacion" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SodomaInnModel.TiposHabitacion" Width="1.5" PointX="0.75" PointY="1" />
+        <EntityTypeShape EntityType="SodomaInnModel.Usuarios" Width="1.5" PointX="7.75" PointY="3.75" />
         <AssociationConnector Association="SodomaInnModel.FK__Habitacio__IdTip__36B12243" />
-        <EntityTypeShape EntityType="SodomaInnModel.PagosReservacion" Width="1.5" PointX="7.625" PointY="4" />
-        <EntityTypeShape EntityType="SodomaInnModel.Reservacion" Width="1.5" PointX="5.375" PointY="4" />
         <AssociationConnector Association="SodomaInnModel.FK__PagosRese__IdRes__52593CB8" />
       </Diagram>
     </edmx:Diagrams>
